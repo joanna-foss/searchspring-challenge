@@ -1,6 +1,15 @@
+:root {
+    --bebas: 'Bebas Neue', cursive;
+    --sansita: 'Sansita Swashed', cursive;
+    --light-yellow: lightgoldenrodyellow;
+    --medium-yellow: rgb(241, 237, 169);
+    --light-pink: rgb(255, 235, 246);
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -8,7 +17,7 @@ body {
     height: 100vh;
     overflow: visible;
     position: relative;
-    background-color: lightgoldenrodyellow;
+    background-color: var(--light-yellow);
 }
 
 #load-container {
@@ -20,7 +29,7 @@ body {
 
     margin: auto;
     padding-top: 15em;
-    background-color: rgb(241, 237, 169);
+    background-color: var(--medium-yellow);
 }
 
 #loader {
@@ -40,7 +49,7 @@ nav {
     justify-content: space-between;
     align-items: center;
 
-    background-color: rgb(241, 237, 168);
+    background-color: var(--medium-yellow);
 
     width: 100%;
     padding: 10px;
@@ -90,6 +99,7 @@ input {
 
 .flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .d-none {
@@ -113,13 +123,18 @@ input {
     flex-wrap: wrap;
     justify-content: center;
 
-    background-color: rgb(255, 235, 246);
+    background-color: var(--light-pink);
 }
 
 h1 {
-    font-family: 'Bebas Neue', cursive;
+    font-family: var(--bebas);
     font-size: 3em;
     margin: 1em;
+}
+
+h2, h3, h4, h5, h6 {
+    margin: .5em 0;
+    padding: .2em;
 }
 
 .quick-link {
@@ -133,7 +148,7 @@ h1 {
     background-repeat: no-repeat;
     background-size: cover;
 
-    font-family: 'Sansita Swashed', cursive;
+    font-family: var(--sansita);
     font-size: 4em;
     color: white;
 
@@ -171,12 +186,77 @@ h1 {
 }
 
 #search-results {
-    justify-content: space-between;
+    flex-direction: column;
     padding: 3em;
 }
 
 #user-searched {
     font-style: italic;
+}
+
+#products {
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+
+    width: min-content;
+    min-height: 500px;
+    padding-bottom: 1em;
+    margin: .5em;
+
+    border-radius: 10px;
+    font-family: var(--bebas);
+    text-align: center;
+}
+
+.card img {
+    width:250px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card h3 {
+    font-family: var(--sansita);
+    margin: .2em .5em;
+    flex-wrap: wrap;
+}
+
+.card h4 {
+    align-self: flex-start;
+    position: absolute;
+
+    margin-left: .4em;
+    padding: .1em;
+    border-radius: 5px;
+
+    font-family: var(--bebas);
+    color: var(--light-pink);
+    letter-spacing: .1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size:xx-large;
+}
+
+.add-to-cart {
+    align-self:flex-end;
+    position: absolute;
+    bottom: 1em;
+    border-radius: 5px;
+    background-color: var(--medium-yellow);
+    padding: .5em 1.5em;
+    margin-right: 1em;
+
+    color: black;
+    font-weight: bold;
+}
+
+.add-to-cart:hover,
+.add-to-cart:target {
+    border: none;
+    box-shadow: 1px 2px 4px 0 rgb(0,0,0,.4);
 }
 
 footer {
@@ -185,7 +265,7 @@ footer {
     justify-content: center;
     align-items: center;
 
-    font-family: 'Bebas Neue', cursive;
+    font-family: var(--bebas);
     font-size: 2em;
 
     height: 3em;
