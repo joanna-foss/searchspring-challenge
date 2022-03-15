@@ -73,6 +73,7 @@ input {
 
 .icon {
     border-left: 1px solid lightgray;
+    cursor: pointer;
 }
 
 .reg-icon * {
@@ -85,6 +86,14 @@ input {
     height: 1.5em;
     width: 1.5em;
     padding: .3em;
+}
+
+.flex {
+    display: flex;
+}
+
+.d-none {
+    display: none;
 }
 
 .container {
@@ -103,6 +112,8 @@ input {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    background-color: rgb(255, 235, 246);
 }
 
 h1 {
@@ -119,14 +130,14 @@ h1 {
     /* margin: .1em; */
     height: 150px;
     width: 500px;
-    border-radius: 2px;
-
     background-repeat: no-repeat;
     background-size: cover;
 
     font-family: 'Sansita Swashed', cursive;
     font-size: 4em;
     color: white;
+
+    cursor: pointer;
 }
 
 #tops {
@@ -157,6 +168,15 @@ h1 {
 #shoes {
     background-position: center;
     background-image: url("img/shoes.jpg");
+}
+
+#search-results {
+    justify-content: space-between;
+    padding: 3em;
+}
+
+#user-searched {
+    font-style: italic;
 }
 
 footer {
