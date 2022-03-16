@@ -153,11 +153,11 @@ h2, h3, h4, h5, h6 {
 
 #tops {
     background-position: center;
-    background-image: url("img/tops.jpg");
+    background-image: url("img/shirts.jpg");
 }
 
 #sweaters {
-    background-position: bottom;
+    background-position: center;
     background-image: url("img/sweaters.jpg");
 }
 
@@ -173,7 +173,7 @@ h2, h3, h4, h5, h6 {
 
 #swimsuits {
     background-position: center;
-    background-image: url("img/swimsuit.jpg");
+    background-image: url("img/swimsuits.jpg");
 }
 
 #shoes {
