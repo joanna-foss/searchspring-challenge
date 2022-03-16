@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
     setTimeout(() => {
         let loader = document.getElementById("load-container")
         loader.remove()
-    }, 1500)    
+    }, 1200)    
 })
 
 //Search bar
@@ -35,13 +35,11 @@ for(let i = 0; i < quickLink.length; i++) {
 //Prev and Next Search Results
 document.getElementById("left").addEventListener("click", () => {
     let userSearched = document.getElementById("user-searched").innerText
-    console.log(pageInfo)
     query(userSearched, pageInfo.previous)
 })
 
 document.getElementById("right").addEventListener("click", () => {
     let userSearched = document.getElementById("user-searched").innerText
-    console.log(pageInfo)
     query(userSearched, pageInfo.next)
 })
 
@@ -88,7 +86,6 @@ function createPageDataObject(searchData) {
         previous: searchData.pagination.previousPage
     }
 
-    console.log(pageObject)
     return pageObject;
 }
 
@@ -108,27 +105,29 @@ function displayPageButtons(pageObj) {
 }
 
 function createProducts(results) {
-    console.log(results)
     let html = ""
     if (results.length == 0) {
         html += "No items matched your search."
     } else {
         results.forEach(element => {
+            msrpExists = Object.keys(element).includes("msrp")
+            let originalPrice = parseFloat(element.price).toFixed(2)
+            let msrpPrice = parseFloat(element.msrp).toFixed(2)
             html += "<div class=\"card flex\">" +
                 "<img src=\"" + element.thumbnailImageUrl + "\">" +
                 "<h3>" + element.name + "</h3>"
 
-            if (element.on_sale[0] == "No") {
-                html += "<h5 class=\"price\">$" + parseFloat(element.price).toFixed(2) + "</h5>"
+            if (!msrpExists || originalPrice >= msrpPrice) {
+                html += "<h5 class=\"price\">$" + originalPrice + "</h5>"
             } else {
-                html += "<p><strike>$" + parseFloat(element.price).toFixed(2) + "</strike></p>" + " " +
-                            "<h4 class=\"sale-price\">$" + parseFloat(element.sale_price).toFixed(2) + "</h4>"
+                html += "<p><strike>$" + msrpPrice + "</strike></p>" + " " +
+                "<h4 class=\"sale-price\">$" + originalPrice + "</h4>"
             }
 
             html += "<div class=\"add-to-cart\">Add to Cart</div>" +
                 "</div>"
-                })
-            };
+            })
+    };
 
     document.getElementById("products").innerHTML = html
 }
