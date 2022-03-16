@@ -1,3 +1,7 @@
+//Needed variables
+const searchspringURL = "https://api.searchspring.io/api/search/search.json"
+let pageInfo;
+
 //EVENT LISTENERS
 //Window Load
 window.addEventListener("load", () => {
@@ -40,11 +44,6 @@ document.getElementById("right").addEventListener("click", () => {
     console.log(pageInfo)
     query(userSearched, pageInfo.next)
 })
-
-
-
-const searchspringURL = "https://api.searchspring.io/api/search/search.json"
-let pageInfo;
 
 //Function definitions
 function query(term, pageNumber) {
