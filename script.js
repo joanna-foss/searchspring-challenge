@@ -13,6 +13,13 @@ document.getElementById("search-button").addEventListener("click", () => {
     query(userSearch, 1)
 })
 
+document.getElementById("search-bar").addEventListener("keydown", (e) => {
+    if(e.code == "Enter") {
+        let userSearch = document.getElementById("search-bar").value
+        query(userSearch, 1)
+    }
+})
+
 //Quick links
 let quickLink = document.getElementsByClassName("quick-link")
 for(let i = 0; i < quickLink.length; i++) {
@@ -21,9 +28,23 @@ for(let i = 0; i < quickLink.length; i++) {
     })
 }
 
+//Prev and Next Search Results
+document.getElementById("left").addEventListener("click", () => {
+    let userSearched = document.getElementById("user-searched").innerText
+    console.log(pageInfo)
+    query(userSearched, pageInfo.previous)
+})
+
+document.getElementById("right").addEventListener("click", () => {
+    let userSearched = document.getElementById("user-searched").innerText
+    console.log(pageInfo)
+    query(userSearched, pageInfo.next)
+})
+
 
 
 const searchspringURL = "https://api.searchspring.io/api/search/search.json"
+let pageInfo;
 
 //Function definitions
 function query(term, pageNumber) {
@@ -42,10 +63,20 @@ function query(term, pageNumber) {
             .then(response => response.json())
             .then(data => {
                 // resolve(data)
-                let pageInfo = createPageDataObject(data)
+                pageInfo = createPageDataObject(data)
                 displayPageButtons(pageInfo)
                 document.getElementById("user-searched").innerText = term
                 createProducts(data.results)
+
+                let add_button = document.getElementsByClassName("add-to-cart")
+                for(let i = 0; i < add_button.length; i++) {
+                    add_button[i].addEventListener("click", () => {
+                        let cart = document.getElementById("cart-items")
+                        let items = parseInt(cart.innerText)
+                        items++
+                        cart.innerText = items
+                    })
+                }
             })
             .catch(error => console.log(error))
     })
@@ -80,22 +111,25 @@ function displayPageButtons(pageObj) {
 function createProducts(results) {
     console.log(results)
     let html = ""
-    results.forEach(element => {
-        html += "<div class=\"card flex\">" +
-        "<img src=\"" + element.thumbnailImageUrl + "\">" +
-        "<h3>" + element.name + "</h3>"
-        
-        if(element.on_sale[0] == "No") {
-            html += "<h4>$" + parseFloat(element.price).toFixed(2) + "</h4>"
-        } else {
-            html += "<p><strike>$" + parseFloat(element.price).toFixed(2) + "</strike></p>" + " " + 
-            "<h4>$" + parseFloat(element.ss_sale_price).toFixed(2) + "</h4>"
-        }
+    if (results.length == 0) {
+        html += "No items matched your search."
+    } else {
+        results.forEach(element => {
+            html += "<div class=\"card flex\">" +
+                "<img src=\"" + element.thumbnailImageUrl + "\">" +
+                "<h3>" + element.name + "</h3>"
 
-        html += "<div class=\"add-to-cart\">Add to Cart</div>" +
-        "</div>"  
-    
-    });
+            if (element.on_sale[0] == "No") {
+                html += "<h5 class=\"price\">$" + parseFloat(element.price).toFixed(2) + "</h5>"
+            } else {
+                html += "<p><strike>$" + parseFloat(element.price).toFixed(2) + "</strike></p>" + " " +
+                            "<h4 class=\"sale-price\">$" + parseFloat(element.sale_price).toFixed(2) + "</h4>"
+            }
+
+            html += "<div class=\"add-to-cart\">Add to Cart</div>" +
+                "</div>"
+                })
+            };
 
     document.getElementById("products").innerHTML = html
 }

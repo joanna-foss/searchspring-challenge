@@ -8,19 +8,15 @@
     <!--Custom CSS-->
     <link rel="stylesheet" href="style.css">
     <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/72af5d8dfa.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sansita+Swashed:wght@600&display=swap"
         rel="stylesheet">
 </head>
 <body>
     <nav>
-        <i class="fa fa-shopify fa-3x"></i>
+        <h2 id="logo">Shoppy</h2>
         <div id="search-box">
-            <input type="text" id="search-bar" name="search-bar">
+            <input type="text" id="search-bar" name="search-bar" placeholder="Search for items here">
             <!--Magnifying Glass svg-->
             <div class="small-icon icon" id="search-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -29,17 +25,14 @@
             </div>
         </div>
         <div class="reg-icon">
-            <!--Shopping Cart svg-->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"/>
-            </svg>
+            <h3>My Cart:<span id="cart-items">0</span></h3>
         </div>
     </nav>
     <div id="load-container">
         <div id="loader"></div>        
     </div>
     <div class="container">
-        <h1>Top Categories</h1>
+        <h1>Quick Categories</h1>
         <div id="quick-links-container">
             <div class="quick-link" id="tops">Tops</div>
             <div class="quick-link" id="sweaters">Sweaters</div>
@@ -49,20 +42,18 @@
             <div class="quick-link" id="shoes">Shoes</div>
         </div>
         <div class="flex d-none" id="search-results">
-            <div class="flex" id="header">
-                <h3>You searched for: "<span id="user-searched"></span>"</h3>
-                <div id="pages-buttons">
-                    <button class="pages d-none" id="left">previous</button>
-                    <button class="pages d-none" id="right">next</button>
-                </div>
-            </div>
-            <div class="flex" id="products" style="border: 1px solid red">
+            <h3>Search results for: "<span id="user-searched"></span>"</h3>
+            <div class="flex" id="products">
 
+            </div>
+            <div id="pages-buttons">
+                <button class="pages d-none" id="left">back</button>
+                <button class="pages d-none" id="right">next</button>
             </div>
         </div>
     </div>
     <footer>
-        <p>© 2022 Shoppy</p>
+        © 2022 Shoppy
     </footer>
 
     <script src="script.js"></script>
