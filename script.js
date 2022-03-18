@@ -59,7 +59,6 @@ function query(term, pageNumber) {
         fetch(searchspringURL + "?" + searchParameters)
             .then(response => response.json())
             .then(data => {
-                // resolve(data)
                 pageInfo = createPageDataObject(data)
                 displayPageButtons(pageInfo)
                 document.getElementById("user-searched").innerText = term
